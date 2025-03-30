@@ -1,0 +1,174 @@
+---
+title: Code Server
+date: 2024-08-09T22:24:00.000Z
+description: Setting up and configuring VS Code Server for remote development, enabling browser-based coding with full IDE capabilities.
+tags:
+  - Development
+published: true
+---
+
+import { Image } from 'astro:assets';
+import optiplex from './optiplex-7080.jpg';
+
+9th August, 2024
+# Code Server
+
+<Image src={optiplex} alt="A Dell OptiPlex mounted under a desk" />
+
+|   |   |
+|---|---|
+| Processor  | Intel Core i5-10500T  |
+| Ram  | (1x16GB) DDR4 non-ECC Memory  |
+| Storage  | M.2 256GB PCIe NVMe  |
+| Graphics | Intel Integrated Graphics|
+
+{/*
+OptiPlex 7080 MFF BTX
+OptiPlex 7080 Micro 35W
+Trusted Platform Module (Discrete TPM Enabled)
+10th Generation Intel Core i5-10500T (6-Core, 12MB Cache, 2.3GHz to 3.8GHz, 35W)
+No Additional Cable Requested
+EPEAT 2018 Registered (Silver)
+16GB (1x16GB) DDR4 non-ECC Memory
+M.2 256GB PCIe NVMe Class 35 Solid State Drive
+No Optane
+Thermal Pad
+UK Power Cord
+90 Watt AC Adapter
+Intel Integrated Graphics, Dell OptiPlex
+No PCIe add-in card
+Speaker for OptiPlex MFF
+Internal Wireless Antennas
+Intel Wi-Fi 6 AX201, Dual-band 2x2 802.11ax with MU-MIMO + Bluetooth 5.1
+Intel(R) Wi-Fi 6 AX201 2x2 (Gig+) + Bluetooth 5.1
+No Additional Network Card Selected (Integrated NIC included)
+No Mouse
+Dell Wireless Keyboard and Mouse-KM636 - UK (QWERTY) - Black
+Dell Client System Update (Updates latest Dell Recommended BIOS, Drivers, Firmware and Apps)
+Waves Maxx Audio
+Dell SupportAssist OS Recovery Tool
+Dell Optimizer
+SupportAssist
+NO RAID
+M2X3.5 Screw for SSD/DDPE
+OptiPlex 7080 Micro Packaging
+Windows 10 Pro (64 Bit), English, Dutch, French, German, Italian
+*/}
+
+## Install
+
+- [Debian 12.6](https://www.debian.org/CD/netinst/)
+- Amd64
+- Minimal Install
+
+
+## Setup
+
+### SSH Server
+
+```
+su -
+apt update
+apt install openssh-server
+systemctl status ssh
+reboot
+```
+
+```
+nano /etc/ssh/sshd_config
+```
+
+```
+# PermitRootLogin no
+```
+
+
+```
+systemctl restart sshd
+```
+
+### Sudo
+
+```
+su -
+apt update
+apt install sudo
+adduser tim sudo
+```
+
+### Unattended Upgrades
+```
+sudo apt install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades
+```
+
+### Docker
+```
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+```
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+### VS Code
+```
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+rm -f packages.microsoft.gpg
+```
+
+```
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code
+```
+
+```
+code tunnel service install
+sudo loginctl enable-linger $USER
+```
+
+
+### Dev Tunnel CLI
+```
+curl -sL https://aka.ms/DevTunnelCliInstall | bash
+source ~/.bashrc
+devtunnel user login -d -g
+```
+
+
+### coder/code-server
+```
+curl -fsSL https://code-server.dev/install.sh | sh
+sudo systemctl enable --now code-server@$USER
+```
+
+### Github cli
+```
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+&& wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& sudo apt update \
+&& sudo apt install gh -y
+
+gh auth login
+```

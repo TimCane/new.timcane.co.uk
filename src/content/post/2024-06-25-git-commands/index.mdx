@@ -1,0 +1,21 @@
+---
+title: Git Commands
+date: 2024-06-25T19:35:00.000Z
+description: Essential Git commands and workflows for version control, including branch management, commit operations, and repository maintenance.
+tags:
+  - Git
+published: true
+---
+
+25th June, 2024
+# My common git commands
+
+## Removing old local branches
+
+```bash
+git branch --no-merged | egrep -v "(^\*|[main]|[develop])" | xargs git branch -d -D
+```
+
+```bash
+git fetch origin --prune
+```

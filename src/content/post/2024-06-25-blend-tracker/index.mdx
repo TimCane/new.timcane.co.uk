@@ -1,0 +1,48 @@
+---
+title: Blend Tracker
+date: 2024-06-25T19:35:00.000Z
+description: A comprehensive Azure-based application for tracking and analyzing coffee blend recipes, featuring cloud storage and data visualization.
+tags:
+  - Azure
+published: true
+---
+
+import architectureDiagram from "./architecture-diagram.min.svg?raw";
+
+25th June, 2024
+# Blend Tracker
+
+## Architecture Diagram
+<Fragment set:html={architectureDiagram} />
+
+## Serverless Functions
+
+### Authenticate
+
+Trigger
+- Http Get
+
+Outputs
+- Cosmos DB (Create / update user document)
+- Service Bus (process-blend-playlist)
+- Http response
+
+### Process Blend Playlist
+
+Trigger
+- Service Bus (process-blend-playlist)
+
+Outputs
+- Cosmos DB (Create / update song document)
+- Service Bus (process-blend-song)
+
+### Process Blend Song
+
+Trigger
+- Service Bus (process-blend-song)
+
+Inputs
+- Cosmos Db (Get existing song)
+
+Outputs
+- Cosmos DB (Create / update song document)
