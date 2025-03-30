@@ -1,0 +1,32 @@
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {}
+	},
+	"forwardPorts": [
+		4321,
+		2222
+	],
+	"portsAttributes": {
+		"4321": {
+			"label": "Application",
+			"onAutoForward": "openBrowser"
+		}
+	},
+	"onCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+	"postCreateCommand": "npm install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"astro-build.astro-vscode",
+				"unifiedjs.vscode-mdx",
+				"yzhang.markdown-all-in-one",
+				"bradlc.vscode-tailwindcss"
+			]
+		}
+	},
+	"runArgs": [
+		"--net=host"
+	]
+}

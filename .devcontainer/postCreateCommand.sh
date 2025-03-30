@@ -1,0 +1,1 @@
+(echo $(whoami); echo $(whoami)) | sudo passwd $(whoami)
