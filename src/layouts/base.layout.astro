@@ -1,3 +1,39 @@
 ---
-import "./src/styles/global.css";
+import "@/styles/global.css";
+import '@fontsource-variable/montserrat';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const canonicalURL = Astro.url.href;
 ---
+
+<!doctype html>
+<html lang="en" class="">
+    <head class="font-sans">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Primary Meta Tags -->
+        <title>{title} | Tim Cane</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+        <!-- Other important meta tags -->
+        <meta name="robots" content="index, follow" />
+        <meta name="generator" content={Astro.generator} />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>

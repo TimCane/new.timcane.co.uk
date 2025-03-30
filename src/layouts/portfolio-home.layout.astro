@@ -1,0 +1,14 @@
+---
+import PortfolioLayout from "@/layouts/portfolio.layout.astro";
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<PortfolioLayout title={title} description={description}>
+    <slot />
+</PortfolioLayout>

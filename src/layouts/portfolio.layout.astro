@@ -1,0 +1,18 @@
+---
+import "@/styles/portfolio.css";
+
+import BaseLayout from "@/layouts/base.layout.astro";
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+    <div class="bg-background dark:bg-background text-text dark:text-text">
+        <slot />
+    </div>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import PortfolioLayout from "@/layouts/portfolio.layout.astro";
+import Nav from "@/components/portfolio/nav.astro";
+import Footer from "@/components/portfolio/footer.astro";
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<PortfolioLayout title={title} description={description}>
+    <div class="min-h-screen flex flex-col">
+        <Nav currentPath={currentPath} />
+        <main class="flex-1">
+            <article class="prose prose-lg max-w-4xl mx-auto px-4 py-8 
+                prose-headings:text-text dark:prose-headings:text-text
+                prose-h1:text-primary dark:prose-h1:text-primary prose-h1:text-4xl md:prose-h1:text-5xl
+                prose-h2:text-primary dark:prose-h2:text-primary prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-8
+                prose-h3:text-secondary dark:prose-h3:text-secondary prose-h3:text-2xl md:prose-h3:text-3xl
+                prose-p:text-text dark:prose-p:text-text prose-p:leading-relaxed
+                prose-a:text-primary dark:prose-a:text-primary hover:prose-a:opacity-90 prose-a:no-underline
+                prose-li:text-text dark:prose-li:text-text prose-li:leading-relaxed
+                prose-strong:text-text dark:prose-strong:text-text
+                prose-lead:text-lg md:prose-lead:text-xl prose-lead:text-text dark:prose-lead:text-text">
+                <slot />
+            </article>
+        </main>
+        <Footer />
+    </div>
+</PortfolioLayout>
