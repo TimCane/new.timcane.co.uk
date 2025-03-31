@@ -1,0 +1,61 @@
+---
+import PageLayout from "@/layouts/portfolio-page.layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const projects = (await getCollection("project"))
+    .filter((project) => project.data.published)
+    .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+
+const featuredProjects = projects.filter((project) => project.data.featured);
+const otherProjects = projects.filter((project) => !project.data.featured);
+---
+
+<PageLayout title="Projects" description="Tim Cane's Projects - Web Development and Software Engineering">
+    <h1 class="text-4xl font-bold mb-8">Projects</h1>
+    
+    {featuredProjects.length > 0 && (
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-primary">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {featuredProjects.map((project) => (
+                    <article class="group">
+                        <a href={`/projects/${project.slug}`} class="block hover:opacity-80">
+                            <h3 class="text-xl font-bold mb-2 text-primary">{project.data.title}</h3>
+                            <p class="text-text/90 mb-4">{project.data.description}</p>
+                            <div class="flex flex-wrap gap-2">
+                                {project.data.tags?.map((tag) => (
+                                    <span class="text-sm px-2 py-1 bg-primary/10 text-primary rounded">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </a>
+                    </article>
+                ))}
+            </div>
+        </div>
+    )}
+    
+    {otherProjects.length > 0 && (
+        <div>
+            <h2 class="text-2xl font-bold mb-6 text-primary">Other Projects</h2>
+            <div class="flex flex-col gap-8">
+                {otherProjects.map((project) => (
+                    <article class="group">
+                        <a href={`/projects/${project.slug}`} class="block hover:opacity-80">
+                            <h3 class="text-xl font-bold mb-2 text-primary">{project.data.title}</h3>
+                            <p class="text-text/90 mb-4">{project.data.description}</p>
+                            <div class="flex flex-wrap gap-2">
+                                {project.data.tags?.map((tag) => (
+                                    <span class="text-sm px-2 py-1 bg-primary/10 text-primary rounded">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </a>
+                    </article>
+                ))}
+            </div>
+        </div>
+    )}
+</PageLayout>

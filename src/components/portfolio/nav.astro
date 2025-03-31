@@ -8,8 +8,8 @@ const pathname = new URL(Astro.request.url).pathname;
 import ThemeSwitcher, { ThemeSwitcherFallback } from './theme-switcher';
 
 const links = [
-    { path: '/', label: 'Home' },
     { path: '/posts', label: 'Posts' },
+    { path: '/projects', label: 'Projects' },
     { path: '/cv', label: 'CV' }
 ];
 ---
