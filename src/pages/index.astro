@@ -3,52 +3,58 @@ import HomeLayout from "@/layouts/portfolio-home.layout.astro";
 ---
 
 <HomeLayout title="Tim Cane" description="Tim Cane - Full Stack Developer">
-    <main class="min-h-screen flex flex-col items-center justify-center p-4">
-        <div class="text-center space-y-8">
-            <h1 class="text-6xl font-bold">
-                Tim <span class="text-primary dark:text-primary">Cane</span>
-            </h1>
-            <p class="text-xl text-text dark:text-text">Full Stack Developer</p>
-            <div class="flex gap-4 justify-center">
-                <a
-                    href="/posts"
-                    class="inline-flex items-center px-6 py-3 bg-primary dark:bg-primary text-background dark:text-text hover:opacity-90 transition-opacity"
-                >
-                    <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <main>
+        <div>
+            <div>
+                <h1>
+                    Tim <span>
+                        Cane
+                        <span></span>
+                    </span>
+                </h1>
+                <p>
+                    Full Stack Developer
+                </p>
+            </div>
+            <div>
+                <a href="/posts">
+                    <svg viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                     </svg>
-                    Posts
+                    <span>
+                        Posts
+                        <span></span>
+                    </span>
                 </a>
-                <a
-                    href="/projects"
-                    class="inline-flex items-center px-6 py-3 bg-primary dark:bg-primary text-background dark:text-text hover:opacity-90 transition-opacity"
-                >
-                    <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="/projects">
+                    <svg viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    Projects
+                    <span>
+                        Projects
+                        <span></span>
+                    </span>
                 </a>
-                <a
-                    href="https://github.com/TimCane"
-                    target="_blank"
-                    class="inline-flex items-center px-6 py-3 bg-accent dark:bg-accent text-background dark:text-background hover:opacity-90 transition-opacity"
-                >
-                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                <a href="https://github.com/TimCane" target="_blank">
+                    <svg viewBox="0 0 24 24">
                         <path
                             fill="currentColor"
                             d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
                         />
                     </svg>
-                    GitHub
+                    <span>
+                        GitHub
+                        <span></span>
+                    </span>
                 </a>
-                <a
-                    href="/cv"
-                    class="inline-flex items-center px-6 py-3 bg-primary dark:bg-primary text-background dark:text-text hover:opacity-90 transition-opacity"
-                >
-                    <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="/cv">
+                    <svg viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                     </svg>
-                    CV
+                    <span>
+                        CV
+                        <span></span>
+                    </span>
                 </a>
             </div>
         </div>

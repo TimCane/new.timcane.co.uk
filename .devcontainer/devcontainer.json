@@ -21,8 +21,7 @@
 			"extensions": [
 				"astro-build.astro-vscode",
 				"unifiedjs.vscode-mdx",
-				"yzhang.markdown-all-in-one",
-				"bradlc.vscode-tailwindcss"
+				"yzhang.markdown-all-in-one"
 			]
 		}
 	},

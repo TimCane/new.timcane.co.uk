@@ -8,9 +8,9 @@ const posts = (await getCollection("post"))
 ---
 
 <PageLayout title="Blog Posts" description="Tim Cane's Blog Posts - Technical articles and tutorials">
-    <h1 class="text-4xl font-bold mb-8">Blog Posts</h1>
+    <h1>Blog Posts</h1>
     
-    <div class="flex flex-col gap-8">
+    <div>
         {posts.map((post) => {
             const formattedDate = post.data.date.toLocaleDateString('en-GB', {
                 year: 'numeric',
@@ -19,13 +19,13 @@ const posts = (await getCollection("post"))
             });
             
             return (
-                <article class="group">
-                    <a href={`/posts/${post.slug}`} class="block hover:opacity-80">
-                        <time datetime={post.data.date.toISOString()} class="text-sm text-text/80 block mb-2">
+                <article>
+                    <a href={`/posts/${post.slug}`}>
+                        <time datetime={post.data.date.toISOString()}>
                             {formattedDate}
                         </time>
-                        <h2 class="text-2xl font-bold mt-0 mb-2 text-primary">{post.data.title}</h2>
-                        <p class="text-text/90">{post.data.description}</p>
+                        <h2>{post.data.title}</h2>
+                        <p>{post.data.description}</p>
                     </a>
                 </article>
             );

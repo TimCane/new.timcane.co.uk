@@ -14,21 +14,18 @@ const links = [
 ];
 ---
 
-<nav class="bg-background dark:bg-background border-b border-text/10 dark:border-text/10">
-    <div class="max-w-4xl mx-auto px-4">
-        <div class="flex h-16 items-center justify-between">
-            <div class="flex-shrink-0">
-                <a href="/" class="text-lg font-semibold text-primary dark:text-primary">Tim Cane</a>
+<nav>
+    <div>
+        <div>
+            <div>
+                <a href="/">Tim Cane</a>
             </div>
-            <div class="flex items-center space-x-8">
+            <div>
                 {links.map(link => (
                     <a 
                         href={link.path}
                         class:list={[
-                            'inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors',
-                            pathname === link.path 
-                                ? 'text-primary dark:text-primary border-b-2 border-primary dark:border-primary' 
-                                : 'text-text dark:text-text hover:text-primary dark:hover:text-primary'
+                            pathname === link.path ? 'active' : ''
                         ]}
                     >
                         {link.label}

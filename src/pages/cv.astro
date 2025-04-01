@@ -3,36 +3,36 @@ import PageLayout from "@/layouts/portfolio-page.layout.astro";
 ---
 
 <PageLayout title="CV" description="Tim Cane - Full Stack Developer CV">
-        <h1 class="text-4xl font-bold mb-8">Tim Cane</h1>
+        <h1>Tim Cane</h1>
         
-        <div class="flex gap-6 items-center mb-8 flex-wrap sm:flex-nowrap">
-            <p class="flex items-center gap-2 w-full m-0">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+        <div>
+            <p>
+                <svg viewBox="0 0 24 24" width="1.25rem" height="1.25rem" fill="none">
                     <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span>Surrey, United Kingdom</span>
             </p>
-            <a href="https://github.com/TimCane" target="_blank" class="flex items-center gap-2 hover:opacity-80">
-                <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <a href="https://github.com/TimCane" target="_blank">
+                <svg viewBox="0 0 24 24" width="1.25rem" height="1.25rem">
                     <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
                 <span>GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/timcane/" target="_blank" class="flex items-center gap-2 hover:opacity-80">
-                <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <a href="https://www.linkedin.com/in/timcane/" target="_blank">
+                <svg viewBox="0 0 24 24" width="1.25rem" height="1.25rem">
                     <path fill="currentColor" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
                 <span>LinkedIn</span>
             </a>
         </div>
 
-        <p class="lead text-xl mb-8">
+        <p>
             I am a Full-Stack developer with over 12 years of enterprise experience building highly transactional and robust architectures. I specialise in front-end development with professional experience working with The Microsoft Stack, particularly C# and Angular in the Azure Platform. I am proficient at designing highly performant web applications, user experiences and server-side APIs for product-centric.
         </p>
         
         <h2>Technical Proficiencies</h2>
-        <div class="flex flex-wrap gap-2">
+        <div>
             {[
                 ".Net Framework / Core / Standard", "AJAX", "Angular", "ASP.NET", "Azure", "Azure Blob Storage", 
                 "Azure CosmosDB NoSql", "Azure CosmosDB Tables", "Azure KeyVault", "Azure Serverless Functions", 
@@ -41,17 +41,17 @@ import PageLayout from "@/layouts/portfolio-page.layout.astro";
                 "Mocking Frameworks", "NgRX", "Node", "NPM", "NSwag", "Octopus Deploy", "OData React", "ReactJS", 
                 "RxJS", "SQL", "TailWind", "Telerik", "TFS/Git", "TSQL", "TypeScript", "VueJS", "WCF"
             ].map(tech => (
-                <span class="px-3 py-1 bg-accent dark:bg-accent text-background dark:text-background text-sm hover:opacity-90 transition-opacity">{tech}</span>
+                <span>{tech}</span>
             ))}
         </div>
 
         <h2>Work Experience</h2>
 
-        <h3>Senior Developer<span class="text-text dark:text-text">, Thesis</span></h3>
-        <p class="text-sm -mt-4">August 2024 - Present</p>
+        <h3>Senior Developer, Thesis</h3>
+        <p>August 2024 - Present</p>
 
-        <h3>Senior Developer<span class="text-text dark:text-text">, CloudAttribution</span></h3>
-        <p class="text-sm -mt-4">December 2021 - August 2024</p>
+        <h3>Senior Developer, CloudAttribution</h3>
+        <p>December 2021 - August 2024</p>
         <p>I joined CloudAttribution to lead the design and implementation of a modernised SaaS web application to allow for mass growth in both data and customer base in the asset management sector, focusing on Fixed Income and Multi-Asset Performance and Attribution analysis for some of the biggest financial organisations in the world.</p>
         <ul>
             <li>Lead developer on the redesign and rebuild of our SaaS web application using Angular, Typescript, SCSS and DevExtreme for UI components resulting in a significant boost to performance, scalability, and user engagement</li>
@@ -64,9 +64,9 @@ import PageLayout from "@/layouts/portfolio-page.layout.astro";
             <li>Working with a third party on the maintenance and upkeep of our public facing website build using Wordpress</li>
         </ul>
 
-        <h3>Senior Full-Stack Developer<span class="text-text dark:text-text">, Silverbear</span></h3>
-        <p class="text-sm -mt-4">September 2013 - November 2021</p>
-        <p class="text-sm italic">Prior Roles: Full-Stack Developer, Junior Full-Stack Developer, Apprentice Full-Stack Developer.</p>
+        <h3>Senior Full-Stack Developer, Silverbear</h3>
+        <p>September 2013 - November 2021</p>
+        <p>Prior Roles: Full-Stack Developer, Junior Full-Stack Developer, Apprentice Full-Stack Developer.</p>
         <p>I joined Silverbear as part of the apprenticeship program and passed with the highest grades in Silverbear history. I quickly worked through the ranks there and soon became a senior developer embedded in the core product team.</p>
         <ul>
             <li>Leading the implementation of highly performant digital solutions for the UK's largest membership associations/professional bodies</li>
@@ -84,8 +84,8 @@ import PageLayout from "@/layouts/portfolio-page.layout.astro";
 
         <h2>Personal Projects</h2>
 
-        <h3>Energy Billing<span class="text-text dark:text-text">, CODENAME: DURBINS ENERGY</span></h3>
-        <p class="text-sm -mt-4">2023 - Present</p>
+        <h3>Energy Billing, CODENAME: DURBINS ENERGY</h3>
+        <p>2023 - Present</p>
         <p>My partner works for a renewable energy firm as a financial controller. Her team performs a monthly task to generate an Excel billing file based on meter data from multiple websites. This project has freed up a day's worth of time for her team each month.</p>
         <ul>
             <li>Implementing a microservice architecture on top of Azure serverless functions to generate a monthly Excel billing file</li>
@@ -94,8 +94,8 @@ import PageLayout from "@/layouts/portfolio-page.layout.astro";
             <li>Utilising Azure KeyVault to store Usernames and passwords for external 3rd party APIs securely</li>
         </ul>
 
-        <h3>Meter Exports<span class="text-text dark:text-text">, CODENAME: DURBINS ENERGY</span></h3>
-        <p class="text-sm -mt-4">2022 - Present</p>
+        <h3>Meter Exports, CODENAME: DURBINS ENERGY</h3>
+        <p>2022 - Present</p>
         <p>My partner works for a renewable energy firm as a financial controller. Her team needs to record meter readings for monthly account preparation. Each energy plant has meters across multiple websites in a variety of formats. This project centralised the data into a Teams channel to speed up monthly processes.</p>
         <ul>
             <li>Implementing a microservice architecture on top of Azure serverless functions to generate monthly Teams notifications</li>
@@ -104,53 +104,7 @@ import PageLayout from "@/layouts/portfolio-page.layout.astro";
             <li>Utilising Azure KeyVault to store usernames and passwords for external 3rd party APIs securely</li>
         </ul>
 
-        <h3>Blend Tracker<span class="text-text dark:text-text">, Personal</span></h3>
-        <p class="text-sm -mt-4">2023 - Present</p>
-        <p>This project is designed to fix an issue my friendship group has around the length of a Spotify "blend" playlist. An auto-generated "Blend" playlist is 50 songs, or around 2.5 hours, containing a selection of everyone's taste in music. We often listened to a song multiple times due to the playlist length. This project aims to auto-generate our own longer blend playlists whilst still keeping track of who each song is associated with.</p>
-        <ul>
-            <li>Implementing a microservice architecture on top of Azure serverless functions to record songs added to a "Blend" playlist in Spotify</li>
-            <li>Utilising Azure CosmosDB NoSql to store song and user data</li>
-            <li>Utilising Azure KeyVault to store usernames and passwords for external 3rd party APIs securely</li>
-            <li>Utilising service buses to communicate between the microservices</li>
-        </ul>
-
-        <h2>Volunteer Experience</h2>
-
-        <h3>Scout Leader<span class="text-text dark:text-text">, 1st Chertsey Scout Group</span></h3>
-        <p class="text-sm -mt-4">March 2013 - Present</p>
-        <p>This includes planning and running weekly meetings, yearly camps, and other events. I'm responsible for the safety and well-being of up to 35 young people aged between 10 and 14, including during potentially hazardous adventurous activities.</p>
-        <ul>
-            <li>Helping to plan a programme and events, whilst thinking about the abilities of my section and the Scouts' rules and guidance</li>
-            <li>Showing organisation, ability to cope with responsibility and decision-making skills</li>
-            <li>Attending weekly meetings, where I've been responsible for the safety, well-being, and personal development of young people</li>
-            <li>Showing leadership, ability to communicate with people of different ages, interpersonal skills, and flexibility and adaptability</li>
-            <li>Identifying potential risks (and whom the risks might affect) for different activities</li>
-            <li>Working out ways to minimise these risks. showing maturity and responsibility, initiative, decision-making, communication skills, and ability to identify, discuss, and minimise potential hazards</li>
-        </ul>
-
-        <h2>Education</h2>
-
-        <h3>City & Guilds Apprenticeship<span class="text-text dark:text-text">, QA Apprenticeship</span></h3>
-        <p class="text-sm -mt-4">September 2013 - August 2014</p>
-        <ul>
-            <li>Completed 8 weeks of bootcamp learning software development fundamentals</li>
-            <li>Developed and improved my skills with on the job experience</li>
-        </ul>
-
-        <h3>A-Levels<span class="text-text dark:text-text">, Woking College</span></h3>
-        <p class="text-sm -mt-4">September 2011 - September 2013</p>
-        <ul>
-            <li>A-Level Computer Science</li>
-            <li>A-Level Electronics</li>
-            <li>BTEC Information Technology</li>
-        </ul>
-
-        <h2>Interests</h2>
-        <ul>
-            <li>Indoor climbing</li>
-            <li>Cycling fast down hills</li>
-            <li>Playing computer games</li>
-            <li>Programming personal projects</li>
-            <li>Camping with my scout troop</li>
-        </ul>
+        <h3>Blend Tracker, Personal</h3>
+        <p>2023 - Present</p>
+        <p>This project is designed to fix an issue my friendship group has around the length of a Spotify "blend" playlist. An auto-generated "Blend" playlist is 50 songs, or around 2.5 hours, containing a selection of everyone's taste in music.</p>
 </PageLayout>

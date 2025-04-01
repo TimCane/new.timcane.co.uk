@@ -11,20 +11,20 @@ const otherProjects = projects.filter((project) => !project.data.featured);
 ---
 
 <PageLayout title="Projects" description="Tim Cane's Projects - Web Development and Software Engineering">
-    <h1 class="text-4xl font-bold mb-8">Projects</h1>
+    <h1>Projects</h1>
     
     {featuredProjects.length > 0 && (
-        <div class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 text-primary">Featured Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h2>Featured Projects</h2>
+            <div>
                 {featuredProjects.map((project) => (
-                    <article class="group">
-                        <a href={`/projects/${project.slug}`} class="block hover:opacity-80">
-                            <h3 class="text-xl font-bold mb-2 text-primary">{project.data.title}</h3>
-                            <p class="text-text/90 mb-4">{project.data.description}</p>
-                            <div class="flex flex-wrap gap-2">
+                    <article>
+                        <a href={`/projects/${project.slug}`}>
+                            <h3>{project.data.title}</h3>
+                            <p>{project.data.description}</p>
+                            <div>
                                 {project.data.tags?.map((tag) => (
-                                    <span class="text-sm px-2 py-1 bg-primary/10 text-primary rounded">
+                                    <span>
                                         {tag}
                                     </span>
                                 ))}
@@ -38,16 +38,16 @@ const otherProjects = projects.filter((project) => !project.data.featured);
     
     {otherProjects.length > 0 && (
         <div>
-            <h2 class="text-2xl font-bold mb-6 text-primary">Other Projects</h2>
-            <div class="flex flex-col gap-8">
+            <h2>Other Projects</h2>
+            <div>
                 {otherProjects.map((project) => (
-                    <article class="group">
-                        <a href={`/projects/${project.slug}`} class="block hover:opacity-80">
-                            <h3 class="text-xl font-bold mb-2 text-primary">{project.data.title}</h3>
-                            <p class="text-text/90 mb-4">{project.data.description}</p>
-                            <div class="flex flex-wrap gap-2">
+                    <article>
+                        <a href={`/projects/${project.slug}`}>
+                            <h3>{project.data.title}</h3>
+                            <p>{project.data.description}</p>
+                            <div>
                                 {project.data.tags?.map((tag) => (
-                                    <span class="text-sm px-2 py-1 bg-primary/10 text-primary rounded">
+                                    <span>
                                         {tag}
                                     </span>
                                 ))}
