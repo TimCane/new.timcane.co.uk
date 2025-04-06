@@ -10,5 +10,7 @@ const { title, description } = Astro.props;
 ---
 
 <PortfolioLayout title={title} description={description}>
-    <slot />
+    <div class="home">
+        <slot />
+    </div>
 </PortfolioLayout>

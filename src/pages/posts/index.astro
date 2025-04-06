@@ -8,27 +8,109 @@ const posts = (await getCollection("post"))
 ---
 
 <PageLayout title="Blog Posts" description="Tim Cane's Blog Posts - Technical articles and tutorials">
-    <h1>Blog Posts</h1>
-    
-    <div>
-        {posts.map((post) => {
-            const formattedDate = post.data.date.toLocaleDateString('en-GB', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            return (
-                <article>
-                    <a href={`/posts/${post.slug}`}>
-                        <time datetime={post.data.date.toISOString()}>
-                            {formattedDate}
-                        </time>
-                        <h2>{post.data.title}</h2>
-                        <p>{post.data.description}</p>
-                    </a>
-                </article>
-            );
-        })}
-    </div>
+        <h1>Blog Posts</h1>
+        
+        <div class="posts-grid">
+            {posts.map((post) => {
+                const formattedDate = post.data.date.toLocaleDateString('en-GB', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                return (
+                    <article class="post-card">
+                        <a href={`/posts/${post.slug}`} class="post-link">
+                            <time datetime={post.data.date.toISOString()} class="post-date">
+                                {formattedDate}
+                            </time>
+                            <h2 class="post-title">{post.data.title}</h2>
+                            <p class="post-description">{post.data.description}</p>
+                            {post.data.tags && post.data.tags.length > 0 && (
+                                <div class="post-tags">
+                                    {post.data.tags.map((tag) => (
+                                        <span class="post-tag">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </a>
+                    </article>
+                );
+            })}
+        </div>
 </PageLayout>
+
+<style>
+    h1 {
+        color: var(--primary);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .posts-grid {
+        display: grid;
+        gap: var(--spacing-lg);
+    }
+
+    .post-card {
+        border: 1px solid var(--secondary-transparent);
+        border-radius: var(--border-radius);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .post-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary);
+    }
+
+    .post-link {
+        display: block;
+        padding: var(--spacing-lg);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .post-date {
+        display: block;
+        color: var(--secondary);
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .post-title {
+        color: var(--primary);
+        margin: 0 0 var(--spacing-sm);
+        font-size: 1.5rem;
+    }
+
+    .post-description {
+        color: var(--secondary);
+        margin: 0 0 var(--spacing-md);
+        line-height: 1.5;
+    }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .post-tag {
+        background-color: var(--secondary-transparent);
+        color: var(--secondary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .posts-container {
+            padding: var(--spacing-md);
+        }
+
+        .post-link {
+            padding: var(--spacing-md);
+        }
+    }
+</style>

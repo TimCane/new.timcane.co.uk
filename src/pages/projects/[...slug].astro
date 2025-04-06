@@ -19,24 +19,145 @@ const { Content } = await project.render();
 ---
 
 <PageLayout title={title} description={description}>
-    <div>
-        <a href="/projects">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            Back to Projects
-        </a>
-    </div>
-
-    {tags && tags.length > 0 && (
-        <div>
-            {tags.map((tag) => (
-                <span>
-                    {tag}
-                </span>
-            ))}
+    <article class="project-content">
+        <div class="back-link-container">
+            <a href="/projects" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="1.25rem" height="1.25rem">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Projects
+            </a>
         </div>
-    )}
 
-    <Content />
+        {tags && tags.length > 0 && (
+            <div class="project-tags">
+                {tags.map((tag) => (
+                    <span class="project-tag">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+        )}
+
+        <Content />
+    </article>
 </PageLayout>
+
+<style>
+    .project-content {
+        padding: var(--spacing-lg);
+    }
+
+    .back-link-container {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        color: var(--secondary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: var(--primary);
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .project-tag {
+        background-color: var(--secondary-transparent);
+        color: var(--secondary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+    }
+
+    /* Content Styles */
+    .project-content :global(h1) {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin: var(--spacing-lg) 0;
+    }
+
+    .project-content :global(h2) {
+        color: var(--primary);
+        font-size: 2rem;
+        margin: var(--spacing-lg) 0 var(--spacing-md);
+    }
+
+    .project-content :global(h3) {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin: var(--spacing-md) 0;
+    }
+
+    .project-content :global(p) {
+        color: var(--secondary);
+        line-height: 1.75;
+        margin: var(--spacing-md) 0;
+    }
+
+    .project-content :global(ul), .project-content :global(ol) {
+        color: var(--secondary);
+        line-height: 1.75;
+        margin: var(--spacing-md) 0;
+        padding-left: var(--spacing-xl);
+    }
+
+    .project-content :global(li) {
+        margin: var(--spacing-xs) 0;
+    }
+
+    .project-content :global(pre) {
+        border-radius: var(--border-radius);
+        padding: var(--spacing-md);
+        margin: var(--spacing-md) 0;
+        overflow-x: auto;
+    }
+
+    .project-content :global(code) {
+        font-family: monospace;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--border-radius);
+    }
+
+    .project-content :global(blockquote) {
+        border-left: 4px solid var(--primary);
+        margin: var(--spacing-md) 0;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        background-color: var(--secondary-transparent);
+    }
+
+    .project-content :global(img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--border-radius);
+        margin: var(--spacing-md) 0;
+    }
+
+    @media (max-width: 768px) {
+        .project-content {
+            padding: var(--spacing-md);
+        }
+
+        .project-content :global(h1) {
+            font-size: 2rem;
+        }
+
+        .project-content :global(h2) {
+            font-size: 1.75rem;
+        }
+
+        .project-content :global(h3) {
+            font-size: 1.5rem;
+        }
+    }
+</style>

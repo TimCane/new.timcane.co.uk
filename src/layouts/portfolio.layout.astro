@@ -1,5 +1,4 @@
 ---
-
 import BaseLayout from "@/layouts/base.layout.astro";
 
 interface Props {
@@ -11,8 +10,138 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-
-    <div>
+    <div class="portfolio">
         <slot />
     </div>
+
+    <script is:inline>
+        function handleTheme() {
+            // Theme handling
+            var isDark =
+                localStorage.theme === "dark" ||
+                (!("theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+            document.documentElement.setAttribute(
+                "data-theme",
+                isDark ? "dark" : "light",
+            );
+        }
+
+        function handleFontSize() {
+            // Font size handling
+            var size = localStorage.fontSize;
+            if (!size) {
+                size = "medium";
+            }
+
+            switch (size) {
+                case "small":
+                    document.documentElement.style.setProperty(
+                        "--font-size-root",
+                        "14px",
+                    );
+                    break;
+                case "medium":
+                    document.documentElement.style.setProperty(
+                        "--font-size-root",
+                        "16px",
+                    );
+                    break;
+                case "large":
+                    document.documentElement.style.setProperty(
+                        "--font-size-root",
+                        "18px",
+                    );
+                    break;
+            }
+        }
+
+        function handleColor(index) {
+            // Rainbow color handling
+            const rainbowColors = [
+                { // Red
+                    light: { h: 357.18, s: 100, l: 45 }, //357.18 100% 45%
+                    dark: { h: 356.95, s: 100, l: 57.99 } //356.95 96% 57.99999999999999%
+                },
+                { // Orange
+                    light: { h: 15.73, s: 100, l: 40 }, //15.73 100% 40%
+                    dark: { h: 18.01, s: 100, l: 48 } //18.01 100% 48%
+                },
+                { // Yellow
+                    light: { h: 34.4, s: 100, l: 33 }, //34.4 100% 33%
+                    dark: { h: 38.88, s: 100, l: 41 } //38.88 100% 41%
+                },
+                { // Green
+                    light: { h: 144.7, s: 100, l: 26 }, //144.7 100% 26%
+                    dark: { h: 142.31, s: 100, l: 33 } //142.31 100% 33%
+                },
+                { // Blue
+                    light: { h: 221.34, s: 97, l: 54 }, //221.34 97% 54%
+                    dark: { h: 216.26, s: 100, l: 57.99 } //216.26 100% 57.99999999999999%
+                },
+                { // Indigo
+                    light: { h: 246.99, s: 92, l: 60 }, //246.99 92% 60%
+                    dark: { h: 235.47, s: 100, l: 74 } //235.47 100% 74%
+                },
+                { // Violet
+                    light: { h: 265.48, s: 99, l: 56 }, //265.48 99% 56.00000000000001%
+                    dark: { h: 256.84, s: 100, l: 76 } //256.84 100% 76%
+                }
+            ];
+
+            // Seeded random number generator
+            function seededRandom(seed) {
+                const x = Math.sin(seed) * 10000;
+                return x - Math.floor(x);
+            }
+
+            // Get today's date components
+            const today = new Date();
+            const seed =
+                today.getFullYear() * 10000 +
+                (today.getMonth() + 1) * 100 +
+                today.getDate();
+
+            // Use seeded random to select color
+            const colorIndex = Math.floor(
+                seededRandom(seed) * rainbowColors.length,
+            );
+
+            const color = rainbowColors[colorIndex];
+
+            // Set the color variables
+            document.documentElement.style.setProperty(
+                "--light-primaryH",
+                color.light.h,
+            );
+            document.documentElement.style.setProperty(
+                "--light-primaryS",
+                color.light.s + "%",
+            );
+            document.documentElement.style.setProperty(
+                "--light-primaryL",
+                color.light.l + "%",
+            );
+            document.documentElement.style.setProperty(
+                "--dark-primaryH",
+                color.dark.h,
+            );
+            document.documentElement.style.setProperty(
+                "--dark-primaryS",
+                color.dark.s + "%",
+            );
+            document.documentElement.style.setProperty(
+                "--dark-primaryL",
+                color.dark.l + "%",
+            );
+        }
+
+        handleTheme();
+        handleFontSize();
+        handleColor();
+
+        document.addEventListener("astro:after-swap", handleTheme);
+        document.addEventListener("astro:after-swap", handleFontSize);
+        document.addEventListener("astro:after-swap", handleColor);
+    </script>
 </BaseLayout>

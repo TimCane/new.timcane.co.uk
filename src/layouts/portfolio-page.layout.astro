@@ -13,13 +13,31 @@ const currentPath = Astro.url.pathname;
 ---
 
 <PortfolioLayout title={title} description={description}>
-    <div>
+    <div class="page">
         <Nav currentPath={currentPath} />
         <main>
-            <article>
-                <slot />
-            </article>
+            <slot />
         </main>
         <Footer />
     </div>
 </PortfolioLayout>
+
+<style>
+    main {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: var(--spacing-md);
+    }
+
+    @media all and (min-width: 1024px) {
+        body {
+            max-width: 920px;
+        }
+    }
+
+    @media all and (min-width: 1200px) {
+        body {
+            max-width: 1080px;
+        }
+    }
+</style>

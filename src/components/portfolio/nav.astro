@@ -6,6 +6,7 @@ interface Props {
 const { currentPath } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 import ThemeSwitcher, { ThemeSwitcherFallback } from './theme-switcher';
+import FontSizeSwitcher from './font-size-switcher';
 
 const links = [
     { path: '/posts', label: 'Posts' },
@@ -14,27 +15,130 @@ const links = [
 ];
 ---
 
-<nav>
-    <div>
-        <div>
-            <div>
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="nav-content">
+            <div class="nav-brand">
                 <a href="/">Tim Cane</a>
             </div>
-            <div>
+            <div class="nav-links">
                 {links.map(link => (
                     <a 
                         href={link.path}
                         class:list={[
-                            pathname === link.path ? 'active' : ''
+                            'nav-link',
+                            pathname.startsWith(link.path) ? 'active' : ''
                         ]}
                     >
                         {link.label}
                     </a>
                 ))}
-                <ThemeSwitcher client:only="react">
-                    <ThemeSwitcherFallback slot="fallback" />
-                </ThemeSwitcher>
+                <div class="nav-controls">
+                    <FontSizeSwitcher client:load />
+                    <ThemeSwitcher client:only="react">
+                        <ThemeSwitcherFallback slot="fallback" />
+                    </ThemeSwitcher>
+                </div>
             </div>
         </div>
     </div>
 </nav>
+
+<style>
+    .main-nav {
+        background-color: var(--primary-bg);
+        border-bottom: 1px solid var(--secondary-light);
+    }
+
+    .nav-container {
+        max-width: var(--max-width, 1080px);
+        margin: 0 auto;
+        padding: 0 var(--spacing-md);
+    }
+
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4rem;
+    }
+
+    .nav-brand a {
+        color: var(--primary);
+        font-size: calc(var(--font-size-root) * 1.25);
+        font-weight: var(--font-weight-bold);
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+
+    .nav-link {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: var(--font-weight-medium);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--border-radius);
+        transition: all 0.2s ease;
+        border: 2px dashed transparent;
+        outline: none;
+    }
+
+    .nav-link:hover {
+        color: var(--primary);
+        background-color: var(--secondary-transparent);
+        border-color: var(--primary);
+        border-style: dashed;
+    }
+
+    .nav-link:focus-visible {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    .nav-link.active {
+        color: var(--primary);
+        border-style: solid;
+        border-color: var(--primary);
+        font-weight: var(--font-weight-bold);
+    }
+
+    .nav-link.active:hover {
+        border-style: dashed;
+    }
+
+    .nav-controls {
+        display: flex;
+        gap: var(--spacing-sm);
+        align-items: center;
+    }
+
+    .theme-switcher {
+        margin-left: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 640px) {
+        .nav-content {
+            height: auto;
+            flex-direction: column;
+            padding: var(--spacing-sm) 0;
+            gap: var(--spacing-sm);
+        }
+
+        .nav-links {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .theme-switcher {
+            margin-left: 0;
+        }
+    }
+</style>

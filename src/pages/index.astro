@@ -4,31 +4,117 @@ import HomeLayout from "@/layouts/portfolio-home.layout.astro";
 
 <HomeLayout title="Tim Cane" description="Tim Cane - Full Stack Developer">
     <main>
-        <div>
-            <div>
+        <div class="container">
+            <div class="header">
                 <h1>
-                    Tim <span> Cane </span>
+                    Tim <span>Cane</span>
                 </h1>
                 <p>Full Stack Developer</p>
             </div>
-            <div>
+            <nav class="nav-links">
                 <a href="/posts">
-                    📚
-                    <span> Posts </span>
+                    <span class="icon">📚</span>
+                    Posts
                 </a>
                 <a href="/projects">
-                    💼
-                    <span> Projects </span>
+                    <span class="icon">💼</span>
+                    Projects
                 </a>
                 <a href="https://github.com/TimCane" target="_blank">
-                    🐱
-                    <span> GitHub </span>
+                    <span class="icon">🐱</span>
+                    GitHub
                 </a>
                 <a href="/cv">
-                    📄
-                    <span> CV </span>
+                    <span class="icon">📄</span>
+                    CV
                 </a>
-            </div>
+            </nav>
         </div>
     </main>
 </HomeLayout>
+
+<style>
+    main {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-md);
+    }
+
+    .container {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .header {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    h1 {
+        font-size: calc(var(--font-size-root) * 3);
+        margin-bottom: var(--spacing-xs);
+        
+        color: var(--secondary);
+        font-weight: var(--font-weight-bold);
+    }
+
+    h1 span {
+        color: var(--primary);
+    }
+
+    p {
+        font-size: calc(var(--font-size-root) * 1.25);
+        color: var(--secondary);
+        opacity: 0.8;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        justify-content: center;
+        margin-top: var(--spacing-xl);
+    }
+
+    .nav-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm) var(--spacing-md);
+        color: var(--secondary);
+        text-decoration: none;
+        border-radius: var(--border-radius);
+        font-weight: var(--font-weight-bold);
+        transition: all 0.2s ease;
+        background-color: var(--primary-bg);
+        border: 1px solid var(--secondary-light);
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+        border-color: var(--primary);
+        transform: translateY(-1px);
+    }
+
+    .icon {
+        font-size: calc(var(--font-size-root) * 1.2);
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: calc(var(--font-size-root) * 2.5);
+        }
+
+        .nav-links {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .nav-links a {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

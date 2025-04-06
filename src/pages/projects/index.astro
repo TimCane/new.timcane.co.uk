@@ -12,50 +12,134 @@ const otherProjects = projects.filter((project) => !project.data.featured);
 
 <PageLayout title="Projects" description="Tim Cane's Projects - Web Development and Software Engineering">
     <h1>Projects</h1>
-    
-    {featuredProjects.length > 0 && (
-        <div>
-            <h2>Featured Projects</h2>
-            <div>
-                {featuredProjects.map((project) => (
-                    <article>
-                        <a href={`/projects/${project.slug}`}>
-                            <h3>{project.data.title}</h3>
-                            <p>{project.data.description}</p>
-                            <div>
-                                {project.data.tags?.map((tag) => (
-                                    <span>
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </a>
-                    </article>
-                ))}
-            </div>
-        </div>
-    )}
-    
-    {otherProjects.length > 0 && (
-        <div>
-            <h2>Other Projects</h2>
-            <div>
-                {otherProjects.map((project) => (
-                    <article>
-                        <a href={`/projects/${project.slug}`}>
-                            <h3>{project.data.title}</h3>
-                            <p>{project.data.description}</p>
-                            <div>
-                                {project.data.tags?.map((tag) => (
-                                    <span>
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </a>
-                    </article>
-                ))}
-            </div>
-        </div>
-    )}
+        
+        {featuredProjects.length > 0 && (
+            <section class="projects-section">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    {featuredProjects.map((project) => (
+                        <article class="project-card">
+                            <a href={`/projects/${project.slug}`} class="project-link">
+                                <h3 class="project-title">{project.data.title}</h3>
+                                <p class="project-description">{project.data.description}</p>
+                                <div class="project-tags">
+                                    {project.data.tags?.map((tag) => (
+                                        <span class="project-tag">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </a>
+                        </article>
+                    ))}
+                </div>
+            </section>
+        )}
+        
+        {otherProjects.length > 0 && (
+            <section class="projects-section">
+                <h2>Other Projects</h2>
+                <div class="projects-grid">
+                    {otherProjects.map((project) => (
+                        <article class="project-card">
+                            <a href={`/projects/${project.slug}`} class="project-link">
+                                <h3 class="project-title">{project.data.title}</h3>
+                                <p class="project-description">{project.data.description}</p>
+                                <div class="project-tags">
+                                    {project.data.tags?.map((tag) => (
+                                        <span class="project-tag">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </a>
+                        </article>
+                    ))}
+                </div>
+            </section>
+        )}
 </PageLayout>
+
+<style>
+    h1 {
+        color: var(--primary);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .projects-section {
+        margin-bottom: var(--spacing-xxl);
+    }
+
+    .projects-section h2 {
+        color: var(--primary);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    .project-card {
+        border: 1px solid var(--secondary-transparent);
+        border-radius: var(--border-radius);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+        height: 100%;
+    }
+
+    .project-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary);
+    }
+
+    .project-link {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: var(--spacing-lg);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .project-title {
+        color: var(--primary);
+        margin: 0 0 var(--spacing-sm);
+        font-size: 1.5rem;
+    }
+
+    .project-description {
+        color: var(--secondary);
+        margin: 0 0 var(--spacing-md);
+        line-height: 1.5;
+        flex-grow: 1;
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .project-tag {
+        background-color: var(--secondary-transparent);
+        color: var(--secondary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .projects-container {
+            padding: var(--spacing-md);
+        }
+
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .project-link {
+            padding: var(--spacing-md);
+        }
+    }
+</style>
