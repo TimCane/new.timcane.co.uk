@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useWizard } from '../context/wizard-context';
 import type { StartingSide } from '../types';
 import { colors } from '../../../theme/colors';

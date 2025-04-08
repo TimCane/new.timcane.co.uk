@@ -1,6 +1,5 @@
 import React from 'react';
 import { useWizard } from '../context/wizard-context';
-import styled from 'styled-components';
 import type { GameType } from '../types';
 import { colors } from '@/apps/badminton/theme/colors';
 import { useRippleAnimation } from '../../../hooks/useRippleAnimation';

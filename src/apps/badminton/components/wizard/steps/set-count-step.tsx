@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { colors } from '../../../theme/colors';
 import { AnimatedRipple } from '../../common/animated-ripple';
 import { useWizard } from '../context/wizard-context';

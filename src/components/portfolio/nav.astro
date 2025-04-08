@@ -3,15 +3,16 @@ interface Props {
     currentPath: string;
 }
 
-const { currentPath } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
-import ThemeSwitcher, { ThemeSwitcherFallback } from './theme-switcher';
-import FontSizeSwitcher, { FontSizeSwitcherFallback } from './font-size-switcher';
+import ThemeSwitcher, { ThemeSwitcherFallback } from "./theme-switcher";
+import FontSizeSwitcher, {
+    FontSizeSwitcherFallback,
+} from "./font-size-switcher";
 
 const links = [
-    { path: '/posts', label: 'Posts' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/cv', label: 'CV' }
+    { path: "/posts", label: "Posts" },
+    { path: "/projects", label: "Projects" },
+    { path: "/cv", label: "CV" },
 ];
 ---
 
@@ -22,17 +23,19 @@ const links = [
                 <a href="/">Tim Cane</a>
             </div>
             <div class="nav-links">
-                {links.map(link => (
-                    <a 
-                        href={link.path}
-                        class:list={[
-                            'nav-link',
-                            pathname.startsWith(link.path) ? 'active' : ''
-                        ]}
-                    >
-                        {link.label}
-                    </a>
-                ))}
+                {
+                    links.map((link) => (
+                        <a
+                            href={link.path}
+                            class:list={[
+                                "nav-link",
+                                pathname.startsWith(link.path) ? "active" : "",
+                            ]}
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
                 <FontSizeSwitcher client:only="react">
                     <FontSizeSwitcherFallback slot="fallback" />
                 </FontSizeSwitcher>
@@ -74,12 +77,12 @@ const links = [
         display: flex;
         align-items: center;
         gap: var(--spacing-md);
-        align-items: stretch
+        align-items: stretch;
     }
 
     .nav-link {
         display: flex;
-    align-items: center;
+        align-items: center;
         color: var(--secondary);
         text-decoration: none;
         font-weight: var(--font-weight-medium);

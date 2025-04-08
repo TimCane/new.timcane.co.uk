@@ -1,45 +1,59 @@
 ---
 import PageLayout from "@/layouts/portfolio-page.layout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 const posts = (await getCollection("post"))
-.filter((post) => post.data.published)
-    .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+    .filter((post) => post.data.published)
+    .sort(
+        (a, b) =>
+            new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
+    );
 ---
 
-<PageLayout title="Blog Posts" description="Tim Cane's Blog Posts - Technical articles and tutorials">
-        <h1>Blog Posts</h1>
-        
-        <div class="posts-grid">
-            {posts.map((post) => {
-                const formattedDate = post.data.date.toLocaleDateString('en-GB', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                
+<PageLayout
+    title="Blog Posts"
+    description="Tim Cane's Blog Posts - Technical articles and tutorials"
+>
+    <h1>Blog Posts</h1>
+
+    <div class="posts-grid">
+        {
+            posts.map((post) => {
+                const formattedDate = post.data.date.toLocaleDateString(
+                    "en-GB",
+                    {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    },
+                );
+
                 return (
                     <article class="post-card">
                         <a href={`/posts/${post.slug}`} class="post-link">
-                            <time datetime={post.data.date.toISOString()} class="post-date">
+                            <time
+                                datetime={post.data.date.toISOString()}
+                                class="post-date"
+                            >
                                 {formattedDate}
                             </time>
                             <h2 class="post-title">{post.data.title}</h2>
-                            <p class="post-description">{post.data.description}</p>
+                            <p class="post-description">
+                                {post.data.description}
+                            </p>
                             {post.data.tags && post.data.tags.length > 0 && (
                                 <div class="post-tags">
                                     {post.data.tags.map((tag) => (
-                                        <span class="post-tag">
-                                            {tag}
-                                        </span>
+                                        <span class="post-tag">{tag}</span>
                                     ))}
                                 </div>
                             )}
                         </a>
                     </article>
                 );
-            })}
-        </div>
+            })
+        }
+    </div>
 </PageLayout>
 
 <style>
@@ -56,7 +70,9 @@ const posts = (await getCollection("post"))
     .post-card {
         border: 1px solid var(--secondary-transparent);
         border-radius: var(--border-radius);
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease;
     }
 
     .post-card:hover {

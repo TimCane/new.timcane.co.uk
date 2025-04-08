@@ -57,7 +57,7 @@ const { title, description } = Astro.props;
             }
         }
 
-        function handleColor(index) {
+        function handleColor() {
             // Rainbow color handling
             const rainbowColors = [
                 {
@@ -213,7 +213,6 @@ const { title, description } = Astro.props;
         handleTheme();
         handleFontSize();
         handleColor();
-
 
         document.addEventListener("astro:after-swap", handleTheme);
         document.addEventListener("astro:after-swap", handleFontSize);

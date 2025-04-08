@@ -1,32 +1,44 @@
 ---
 import PageLayout from "@/layouts/portfolio-page.layout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 const projects = (await getCollection("project"))
     .filter((project) => project.data.published)
-    .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+    .sort(
+        (a, b) =>
+            new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
+    );
 
 const featuredProjects = projects.filter((project) => project.data.featured);
 const otherProjects = projects.filter((project) => !project.data.featured);
 ---
 
-<PageLayout title="Projects" description="Tim Cane's Projects - Web Development and Software Engineering">
+<PageLayout
+    title="Projects"
+    description="Tim Cane's Projects - Web Development and Software Engineering"
+>
     <h1>Projects</h1>
-        
-        {featuredProjects.length > 0 && (
+
+    {
+        featuredProjects.length > 0 && (
             <section class="projects-section">
                 <h2>Featured Projects</h2>
                 <div class="projects-grid">
                     {featuredProjects.map((project) => (
                         <article class="project-card">
-                            <a href={`/projects/${project.slug}`} class="project-link">
-                                <h3 class="project-title">{project.data.title}</h3>
-                                <p class="project-description">{project.data.description}</p>
+                            <a
+                                href={`/projects/${project.slug}`}
+                                class="project-link"
+                            >
+                                <h3 class="project-title">
+                                    {project.data.title}
+                                </h3>
+                                <p class="project-description">
+                                    {project.data.description}
+                                </p>
                                 <div class="project-tags">
                                     {project.data.tags?.map((tag) => (
-                                        <span class="project-tag">
-                                            {tag}
-                                        </span>
+                                        <span class="project-tag">{tag}</span>
                                     ))}
                                 </div>
                             </a>
@@ -34,22 +46,29 @@ const otherProjects = projects.filter((project) => !project.data.featured);
                     ))}
                 </div>
             </section>
-        )}
-        
-        {otherProjects.length > 0 && (
+        )
+    }
+
+    {
+        otherProjects.length > 0 && (
             <section class="projects-section">
                 <h2>Other Projects</h2>
                 <div class="projects-grid">
                     {otherProjects.map((project) => (
                         <article class="project-card">
-                            <a href={`/projects/${project.slug}`} class="project-link">
-                                <h3 class="project-title">{project.data.title}</h3>
-                                <p class="project-description">{project.data.description}</p>
+                            <a
+                                href={`/projects/${project.slug}`}
+                                class="project-link"
+                            >
+                                <h3 class="project-title">
+                                    {project.data.title}
+                                </h3>
+                                <p class="project-description">
+                                    {project.data.description}
+                                </p>
                                 <div class="project-tags">
                                     {project.data.tags?.map((tag) => (
-                                        <span class="project-tag">
-                                            {tag}
-                                        </span>
+                                        <span class="project-tag">{tag}</span>
                                     ))}
                                 </div>
                             </a>
@@ -57,7 +76,8 @@ const otherProjects = projects.filter((project) => !project.data.featured);
                     ))}
                 </div>
             </section>
-        )}
+        )
+    }
 </PageLayout>
 
 <style>
@@ -84,7 +104,9 @@ const otherProjects = projects.filter((project) => !project.data.featured);
     .project-card {
         border: 1px solid var(--secondary-transparent);
         border-radius: var(--border-radius);
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease;
         height: 100%;
     }
 
