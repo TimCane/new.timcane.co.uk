@@ -5,7 +5,8 @@ import type { StartingSide } from '../types';
 import { colors } from '../../../theme/colors';
 import { AnimatedRipple } from '../../common/animated-ripple';
 import { useRippleAnimation } from '../../../hooks/useRippleAnimation';
-import { Button } from '@/apps/badminton/theme/button.styles';
+import { ButtonGroup, Button } from '../theme/button.styles';
+import { Title } from '../theme/title.styles';
 
 export const StartingSideStep: React.FC = () => {
   const { updateData, nextStep } = useWizard();
@@ -19,18 +20,18 @@ export const StartingSideStep: React.FC = () => {
   };
 
   const getButtonColor = (side: StartingSide, state: "normal" | "hover" | "active" = "normal") => {
-      switch (state) {
-        case "hover":
-          return side === 'Left' ? colors.courtBlueHover : colors.yonexRedHover
-        case "active":
-          return side === 'Left' ? colors.courtBlueActive : colors.yonexRedActive
-        default:
-          return side === 'Left' ? colors.courtBlue : colors.yonexRed
-      }
+    switch (state) {
+      case "hover":
+        return side === 'Left' ? colors.courtBlueHover : colors.yonexRedHover
+      case "active":
+        return side === 'Left' ? colors.courtBlueActive : colors.yonexRedActive
+      default:
+        return side === 'Left' ? colors.courtBlue : colors.yonexRed
+    }
   };
 
   return (
-    <Container>
+    <>
       <Title>Starting Side</Title>
       <ButtonGroup>
         <Button
@@ -58,27 +59,7 @@ export const StartingSideStep: React.FC = () => {
           onAnimationComplete={handleAnimationComplete}
         />
       )}
-    </Container>
+    </>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-color: ${colors.background};
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 2rem;
-`;

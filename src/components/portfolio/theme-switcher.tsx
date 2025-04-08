@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 export function ThemeSwitcherFallback() {
     return (
-        <div>
             <button>
             <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +17,6 @@ export function ThemeSwitcherFallback() {
                         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" />
                     </svg>
             </button>
-        </div>
     );
 }
 
@@ -70,7 +68,6 @@ export default function ThemeSwitcher() {
     }, [theme]);
 
     return (
-        <div>
             <button 
                 onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
@@ -113,6 +110,5 @@ export default function ThemeSwitcher() {
                     </svg>
                 )}
             </button>
-        </div>
     );
 }

@@ -6,7 +6,7 @@ interface Props {
 const { currentPath } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 import ThemeSwitcher, { ThemeSwitcherFallback } from './theme-switcher';
-import FontSizeSwitcher from './font-size-switcher';
+import FontSizeSwitcher, { FontSizeSwitcherFallback } from './font-size-switcher';
 
 const links = [
     { path: '/posts', label: 'Posts' },
@@ -33,12 +33,12 @@ const links = [
                         {link.label}
                     </a>
                 ))}
-                <div class="nav-controls">
-                    <FontSizeSwitcher client:load />
-                    <ThemeSwitcher client:only="react">
-                        <ThemeSwitcherFallback slot="fallback" />
-                    </ThemeSwitcher>
-                </div>
+                <FontSizeSwitcher client:only="react">
+                    <FontSizeSwitcherFallback slot="fallback" />
+                </FontSizeSwitcher>
+                <ThemeSwitcher client:only="react">
+                    <ThemeSwitcherFallback slot="fallback" />
+                </ThemeSwitcher>
             </div>
         </div>
     </div>
@@ -74,9 +74,12 @@ const links = [
         display: flex;
         align-items: center;
         gap: var(--spacing-md);
+        align-items: stretch
     }
 
     .nav-link {
+        display: flex;
+    align-items: center;
         color: var(--secondary);
         text-decoration: none;
         font-weight: var(--font-weight-medium);

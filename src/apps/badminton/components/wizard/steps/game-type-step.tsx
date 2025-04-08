@@ -5,7 +5,8 @@ import type { GameType } from '../types';
 import { colors } from '@/apps/badminton/theme/colors';
 import { useRippleAnimation } from '../../../hooks/useRippleAnimation';
 import { AnimatedRipple } from '../../common/animated-ripple';
-import { Button } from '@/apps/badminton/theme/button.styles';
+import { ButtonGroup, Button } from '../theme/button.styles';
+import { Title } from '../theme/title.styles';
 
 export const GameTypeStep: React.FC = () => {
   const { updateData, nextStep } = useWizard();
@@ -30,7 +31,7 @@ export const GameTypeStep: React.FC = () => {
   };
 
   return (
-    <Container>
+    <>
       <Title>Select Game Type</Title>
       <ButtonGroup>
         <Button
@@ -58,27 +59,6 @@ export const GameTypeStep: React.FC = () => {
           onAnimationComplete={handleAnimationComplete}
         />
       )}
-    </Container>
+    </>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-color: ${colors.background};
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 2rem;
-`;

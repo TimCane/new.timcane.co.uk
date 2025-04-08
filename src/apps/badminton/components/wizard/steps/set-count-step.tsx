@@ -5,7 +5,8 @@ import { AnimatedRipple } from '../../common/animated-ripple';
 import { useWizard } from '../context/wizard-context';
 import type { SetCount } from '../types';
 import { useRippleAnimation } from '../../../hooks/useRippleAnimation';
-import { Button } from '@/apps/badminton/theme/button.styles';
+import { ButtonGroup, Button } from '../theme/button.styles';
+import { Title } from '../theme/title.styles';
 
 export const SetCountStep: React.FC = () => {
   const { updateData, nextStep } = useWizard();
@@ -31,7 +32,7 @@ export const SetCountStep: React.FC = () => {
   };
 
   return (
-    <Container>
+    <>
       <Title>Number of Sets</Title>
       <ButtonGroup>
         {options.map((count) => (
@@ -54,27 +55,6 @@ export const SetCountStep: React.FC = () => {
           onAnimationComplete={handleAnimationComplete}
         />
       )}
-    </Container>
+    </>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-color: ${colors.background};
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: ${colors.text};
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 2rem;
-`;

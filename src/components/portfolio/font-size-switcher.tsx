@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 export function FontSizeSwitcherFallback() {
     return (
-        <div>
             <button>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +17,6 @@ export function FontSizeSwitcherFallback() {
                     <text x="6" y="20" fontSize="18" fontWeight="bold">A</text>
                 </svg>
             </button>
-        </div>
     );
 }
 
@@ -59,8 +57,8 @@ export default function FontSizeSwitcher() {
         return (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width={`${1.25 * scale}rem`}
-                height={`${1.25 * scale}rem`}
+                width="1.25rem"
+                height="1.25rem"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -68,14 +66,22 @@ export default function FontSizeSwitcher() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
             >
+                {/* Main A */}
                 <path d="M6 18L12 6L18 18" />
                 <path d="M8 14h8" />
+                
+                {/* Direction indicator */}
+                {fontSize === 'small' && (
+                    <path d="M17 4l3 3l3-3" strokeWidth="1.5" />
+                )}
+                {fontSize === 'large' && (
+                    <path d="M23 7l-3-3l-3 3" strokeWidth="1.5" />
+                )}
             </svg>
         );
     };
 
     return (
-        <div>
             <button
                 onClick={cycleFontSize}
                 style={{ 
@@ -89,6 +95,5 @@ export default function FontSizeSwitcher() {
                 <span className="sr-only">Change font size (currently {fontSize})</span>
                 {getFontSizeIcon()}
             </button>
-        </div>
     );
 }

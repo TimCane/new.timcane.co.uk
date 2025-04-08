@@ -4,6 +4,7 @@ import { steps } from './config/steps';
 import ProgressBar from './components/progress-bar';
 import styled from 'styled-components';
 import type { GameSetupData } from './types';
+import { colors } from '../../theme/colors';
 
 interface GameSetupWizardProps {
   onComplete: (data: GameSetupData) => void;
@@ -22,7 +23,9 @@ const WizardContent: React.FC<{ onComplete: (data: GameSetupData) => void }> = (
   return (
     <Container>
       <ProgressBar currentStep={state.currentStep} totalSteps={steps.length} />
+      <StepContainer>
       {CurrentStep && <CurrentStep />}
+      </StepContainer>
     </Container>
   );
 };
@@ -46,5 +49,14 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
+const StepContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: ${colors.background};
+`;
 
 export default GameSetupWizard;
