@@ -73,7 +73,9 @@
   --secondary-darker: hsl(var(--secondaryH), var(--secondaryS), calc(var(--secondaryL) * 0.2));
   --secondary-light: hsl(var(--secondaryH), var(--secondaryS), 75%);
   --secondary-lighter: hsl(var(--secondaryH), var(--secondaryS), 96%);
+ 
   
+  --color-transition: 0s;
 }
 
 /* Manual theme class override */
@@ -97,6 +99,12 @@
   --secondaryS: var(--light-secondaryS);
   --secondaryL: var(--light-secondaryL);
   --secondary-bg: var(--light-secondary-bg);
+}
+
+* {
+  transition-property: color, background-color;
+  transition-timing-function: ease;
+  transition-duration: var(--color-transition);
 }
 
 html {

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/base.layout.astro";
-import "@/styles/global.css";
+import "@/styles/portfolio.css";
 
 interface Props {
     title?: string;
@@ -16,6 +16,101 @@ const { title, description } = Astro.props;
     </div>
 
     <script is:inline>
+        let rainbowMode = false;
+        let rainbowInterval;
+        let currentColorIndex = 0;
+        let keySequence = '';
+        const secretCode = 'rainbow';
+
+        // Rainbow color palette
+        const rainbowColors = [
+            {
+                // rose
+                light: { h: 346.8, s: 77.2, l: 49.8 },
+                dark: { h: 349.7, s: 89.2, l: 60.2 },
+            },
+            {
+                // pink
+                light: { h: 333.3, s: 71.4, l: 50.6 },
+                dark: { h: 330.4, s: 81.2, l: 60.4 },
+            },
+            {
+                // fuchsia
+                light: { h: 293.4, s: 69.5, l: 48.8 },
+                dark: { h: 292.2, s: 84.1, l: 60.6 },
+            },
+            {
+                // purple
+                light: { h: 271.5, s: 81.3, l: 55.9 },
+                dark: { h: 270.7, s: 91, l: 65.1 },
+            },
+            {
+                // violet
+                light: { h: 262.1, s: 83.3, l: 57.8 },
+                dark: { h: 255.1, s: 91.7, l: 76.3 },
+            },
+            {
+                // indigo
+                light: { h: 243.4, s: 75.4, l: 58.6 },
+                dark: { h: 234.5, s: 89.5, l: 73.9 },
+            },
+            {
+                // blue
+                light: { h: 221.2, s: 83.2, l: 53.3 },
+                dark: { h: 217.2, s: 91.2, l: 59.8 },
+            },
+            {
+                // lightBlue
+                light: { h: 201.3, s: 96.3, l: 32.2 },
+                dark: { h: 200.4, s: 98, l: 39.4 },
+            },
+            {
+                // cyan
+                light: { h: 192.9, s: 82.3, l: 31 },
+                dark: { h: 191.6, s: 91.4, l: 36.5 },
+            },
+            {
+                // teal
+                light: { h: 175.3, s: 77.4, l: 26.1 },
+                dark: { h: 174.7, s: 83.9, l: 31.6 },
+            },
+            {
+                // emerald
+                light: { h: 162.9, s: 93.5, l: 24.3 },
+                dark: { h: 161.4, s: 93.5, l: 30.4 },
+            },
+            {
+                // green
+                light: { h: 142.4, s: 71.8, l: 29.2 },
+                dark: { h: 142.1, s: 76.2, l: 36.3 },
+            },
+            {
+                // lime
+                light: { h: 85.9, s: 78.4, l: 27.3 },
+                dark: { h: 84.8, s: 85.2, l: 34.5 },
+            },
+            {
+                // yellow
+                light: { h: 35.5, s: 91.7, l: 32.9 },
+                dark: { h: 40.6, s: 96.1, l: 40.4 },
+            },
+            {
+                // amber
+                light: { h: 26, s: 90.5, l: 37.1 },
+                dark: { h: 32.1, s: 94.6, l: 43.7 },
+            },
+            {
+                // orange
+                light: { h: 17.5, s: 88.3, l: 40.4 },
+                dark: { h: 20.5, s: 90.2, l: 48.2 },
+            },
+            {
+                // red
+                light: { h: 0, s: 72.2, l: 50.6 },
+                dark: { h: 0, s: 84.2, l: 60.2 },
+            },
+        ];
+
         function handleTheme() {
             // Theme handling
             var isDark =
@@ -58,118 +153,6 @@ const { title, description } = Astro.props;
         }
 
         function handleColor() {
-            // Rainbow color handling
-            const rainbowColors = [
-                {
-                    // rose
-                    light: { h: 346.8, s: 77.2, l: 49.8 },
-                    dark: { h: 349.7, s: 89.2, l: 60.2 },
-                },
-
-                {
-                    // pink
-                    light: { h: 333.3, s: 71.4, l: 50.6 },
-                    dark: { h: 330.4, s: 81.2, l: 60.4 },
-                },
-
-                {
-                    // fuchsia
-                    light: { h: 293.4, s: 69.5, l: 48.8 },
-                    dark: { h: 292.2, s: 84.1, l: 60.6 },
-                },
-
-                {
-                    // purple
-                    light: { h: 271.5, s: 81.3, l: 55.9 },
-                    dark: { h: 270.7, s: 91, l: 65.1 },
-                },
-
-                {
-                    // violet
-                    light: { h: 262.1, s: 83.3, l: 57.8 },
-                    dark: { h: 255.1, s: 91.7, l: 76.3 },
-                },
-
-                {
-                    // indigo
-                    light: { h: 243.4, s: 75.4, l: 58.6 },
-                    dark: { h: 234.5, s: 89.5, l: 73.9 },
-                },
-
-                {
-                    // blue
-                    light: { h: 221.2, s: 83.2, l: 53.3 },
-                    dark: { h: 217.2, s: 91.2, l: 59.8 },
-                },
-
-                {
-                    // lightBlue
-                    light: { h: 201.3, s: 96.3, l: 32.2 },
-                    dark: { h: 200.4, s: 98, l: 39.4 },
-                },
-
-                {
-                    // cyan
-                    light: { h: 192.9, s: 82.3, l: 31 },
-                    dark: { h: 191.6, s: 91.4, l: 36.5 },
-                },
-
-                {
-                    // teal
-                    light: { h: 175.3, s: 77.4, l: 26.1 },
-                    dark: { h: 174.7, s: 83.9, l: 31.6 },
-                },
-
-                {
-                    // emerald
-                    light: { h: 162.9, s: 93.5, l: 24.3 },
-                    dark: { h: 161.4, s: 93.5, l: 30.4 },
-                },
-
-                {
-                    // green
-                    light: { h: 142.4, s: 71.8, l: 29.2 },
-                    dark: { h: 142.1, s: 76.2, l: 36.3 },
-                },
-
-                {
-                    // lime
-                    light: { h: 85.9, s: 78.4, l: 27.3 },
-                    dark: { h: 84.8, s: 85.2, l: 34.5 },
-                },
-
-                {
-                    // yellow
-                    light: { h: 35.5, s: 91.7, l: 32.9 },
-                    dark: { h: 40.6, s: 96.1, l: 40.4 },
-                },
-
-                {
-                    // amber
-                    light: { h: 26, s: 90.5, l: 37.1 },
-                    dark: { h: 32.1, s: 94.6, l: 43.7 },
-                },
-
-                {
-                    // orange
-                    light: { h: 17.5, s: 88.3, l: 40.4 },
-                    dark: { h: 20.5, s: 90.2, l: 48.2 },
-                },
-
-                {
-                    // red
-                    light: { h: 0, s: 72.2, l: 50.6 },
-                    dark: { h: 0, s: 84.2, l: 60.2 },
-                },
-            ];
-
-            // Seeded random number generator
-            function seededRandom(seed) {
-                const x = Math.sin(seed) * 10000;
-                return x - Math.floor(x);
-            }
-
-            // Get today's date components
             const today = new Date();
             const seed =
                 today.getFullYear() * 10000 +
@@ -181,6 +164,15 @@ const { title, description } = Astro.props;
                 seededRandom(seed) * rainbowColors.length,
             );
 
+            setTheme(colorIndex);
+        }
+
+        function seededRandom(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        function setTheme(colorIndex) {
             const color = rainbowColors[colorIndex];
 
             // Set the color variables
@@ -210,12 +202,54 @@ const { title, description } = Astro.props;
             );
         }
 
+        function startRainbowMode() {
+            if (rainbowMode) return;
+            rainbowMode = true;
+            document.documentElement.style.setProperty('--color-transition', '1s');
+            
+            rainbowInterval = setInterval(() => {
+                setTheme(currentColorIndex);
+                
+                currentColorIndex = (currentColorIndex + 1) % rainbowColors.length;
+            }, 1000);
+        }
+
+        function stopRainbowMode() {
+            if (!rainbowMode) return;
+            rainbowMode = false;
+            clearInterval(rainbowInterval);
+            handleColor(); // Reset to daily color
+
+            setTimeout(() => {
+            document.documentElement.style.removeProperty('--color-transition');
+            }, 1000);
+            
+        }
+
+        // Key sequence detection
+        document.addEventListener('keydown', (e) => {
+            keySequence += e.key.toLowerCase();
+            if (keySequence.length > secretCode.length) {
+                keySequence = keySequence.slice(-secretCode.length);
+            }
+            if (keySequence === secretCode) {
+                startRainbowMode();
+            }
+        });
+
+        // Stop rainbow mode on user interaction
+        ['click', 'touchstart', 'scroll'].forEach(event => {
+            document.addEventListener(event, () => {
+                if (rainbowMode) {
+                    stopRainbowMode();
+                }
+            });
+        });
+    </script>
+
+    <script is:inline data-astro-rerun>
         handleTheme();
         handleFontSize();
         handleColor();
-
-        document.addEventListener("astro:after-swap", handleTheme);
-        document.addEventListener("astro:after-swap", handleFontSize);
-        document.addEventListener("astro:after-swap", handleColor);
     </script>
 </BaseLayout>
